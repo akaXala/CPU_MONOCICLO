@@ -1,0 +1,74 @@
+--==============================================================================
+-- Librerías estándar IEEE
+--==============================================================================
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL; -- Necesaria para la conversión de std_logic_vector a integer
+
+--==============================================================================
+-- Entidad ROM
+--==============================================================================
+entity ROM is
+    port (
+        CS : in  STD_LOGIC;                             -- Chip Select (Se asume activo en alto '1')
+        I  : in  STD_LOGIC_VECTOR(15 downto 0);         -- Bus de Dirección (16 bits -> 65536 locaciones)
+        O  : out STD_LOGIC_VECTOR(15 downto 0)          -- Bus de Datos de Salida (16 bits -> 2 bytes)
+    );
+end entity ROM;
+
+--==============================================================================
+-- Arquitectura 'memory' de la entidad ROM
+--==============================================================================
+architecture memory of ROM is
+
+    -- Constantes para definir el tamaño de la ROM
+    constant C_ADDR_WIDTH : natural := 16;
+    constant C_DATA_WIDTH : natural := 16;
+    constant C_ROM_DEPTH  : natural := 2**C_ADDR_WIDTH; -- 65536 locaciones
+
+    -- Definición del tipo de dato para el array de la ROM
+    type t_rom_array is array (0 to C_ROM_DEPTH - 1) of STD_LOGIC_VECTOR(C_DATA_WIDTH - 1 downto 0);
+
+    -- -------------------------------------------------------------------------
+    -- --- IMPORTANTE: Definición del Contenido de la ROM ---
+    -- -------------------------------------------------------------------------
+    -- constant ROM_CONTENT : t_rom_array := (
+    --     0      => x"1100",  -- Contenido en la dirección 0x0000
+    --     1      => x"F0F0",  -- Contenido en la dirección 0x0001
+    --     2      => B"0000111100001111", -- Ejemplo en binario
+    --     -- ... continua definiendo valores para otras direcciones ...
+    --     -- Puedes usar 'others' para asignar un valor por defecto
+    --     -- a todas las direcciones no especificadas explícitamente.
+    --     others => x"0000"   -- Valor por defecto para el resto
+    -- );
+    --
+    -- Inicialización por defecto (toda la ROM a cero como placeholder):
+    constant ROM_CONTENT : t_rom_array := (others => (others => '0'));
+    --
+    -- -------------------------------------------------------------------------
+
+begin
+
+    -- Proceso que modela el comportamiento de lectura de la ROM
+    process (CS, I)
+        -- Variable local para almacenar la dirección convertida a entero
+        variable v_addr_int : natural range 0 to C_ROM_DEPTH - 1;
+    begin
+        -- Convertir el vector de dirección (asumido sin signo) a un índice entero
+        v_addr_int := to_integer(unsigned(I));
+
+        -- Comportamiento basado en Chip Select (CS)
+        if CS = '1' then
+            -- Si CS está activo ('1'), la salida O toma el valor de la ROM
+            -- en la dirección especificada por I.
+            O <= ROM_CONTENT(v_addr_int);
+        else
+            -- Si CS está inactivo ('0'), la salida O se pone en alta impedancia ('Z').
+            -- Esto es crucial si el bus de datos 'O' se comparte con otros dispositivos.
+            O <= (others => 'Z');
+            -- Alternativa: Si no necesitas alta impedancia (ej. bus no compartido),
+            -- podrías asignar ceros: O <= (others => '0');
+        end if;
+    end process;
+
+end architecture memory;

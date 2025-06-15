@@ -1,0 +1,69 @@
+-- tb_top.vhd
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity tb_top is
+    -- Testbench entity es generalmente vacía
+end tb_top;
+
+architecture behavior of tb_top is
+
+    -- Componente bajo prueba (Unit Under Test - UUT)
+    component TOP is
+        port(
+            clk : in  std_logic;
+            clr : in  std_logic;
+            o   : out std_logic_vector(7 downto 0)
+        );
+    end component;
+
+    -- Señales del Testbench
+    signal tb_clk : std_logic := '0';
+    signal tb_clr : std_logic := '1'; -- Inicia con reset activo
+    signal tb_o   : std_logic_vector(7 downto 0);
+
+    -- Constantes del Reloj
+    constant CLK_PERIOD : time := 20 ns; -- Periodo para 50 MHz (1 / 50e6 = 20e-9)
+
+begin
+
+    -- Instancia del UUT
+    uut : TOP
+        port map (
+            clk => tb_clk,
+            clr => tb_clr,
+            o   => tb_o
+        );
+
+    -- Proceso de Generación de Reloj
+    clk_process : process
+    begin
+        tb_clk <= '0';
+        wait for CLK_PERIOD / 2;
+        tb_clk <= '1';
+        wait for CLK_PERIOD / 2;
+    end process clk_process;
+
+    -- Proceso de Estímulo y Control
+    stimulus_process : process
+    begin
+        report "Iniciando simulación de TOP...";
+
+        -- 1. Mantener Reset activo por un tiempo
+        tb_clr <= '1';
+        wait for 50 ns; -- Mantener reset por ~2.5 ciclos de reloj
+
+        -- 2. Desactivar Reset
+        report "Desactivando Clear (clr)...";
+        tb_clr <= '0';
+
+        -- 3. Esperar a que la simulación corra
+        wait for 100000 ns - 50 ns; -- Correr hasta 1 us total
+
+        -- 4. Detener simulación
+        report "Simulación completada después de 1 us.";
+        wait; -- Detiene este proceso (y usualmente la simulación en ModelSim)
+
+    end process stimulus_process;
+
+end behavior;

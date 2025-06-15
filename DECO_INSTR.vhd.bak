@@ -1,0 +1,28 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+
+entity DECO_INSTR is
+	port(
+		I			: in	std_logic_vector(15 downto 0);
+		sel_alu	: out std_logic_vector(2 downto 0);
+		ld			: out std_logic;
+		sel_erl	: out	std_logic;
+		br			: out std_logic;
+		sel_r_d	: out std_logic_vector(4 downto 0);
+		sel_r_r	: out std_logic_vector(4 downto 0);
+		sel_w_d	: out std_logic_vector(4 downto 0);
+		en_w		: out std_logic;
+		en_port	: out std_logic;
+		en_sreg	: out std_logic;
+		ld_mov	: out std_logic;
+		ret_s		: out std_logic
+	);
+end DECO_INSTR;
+
+architecture instruccion of DECO_INSTR is
+begin
+	
+	--case i(15 downto 12) is
+	--	when "0000" => 
+end instruccion;

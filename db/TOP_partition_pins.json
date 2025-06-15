@@ -1,0 +1,273 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "o0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "o0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "o0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "o0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "o0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "o0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "o0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "o0[7]",
+					"strict" : false
+				},
+				{
+					"name" : "o1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "o1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "o1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "o1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "o1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "o1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "o1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "o1[7]",
+					"strict" : false
+				},
+				{
+					"name" : "o2[0]",
+					"strict" : false
+				},
+				{
+					"name" : "o2[1]",
+					"strict" : false
+				},
+				{
+					"name" : "o2[2]",
+					"strict" : false
+				},
+				{
+					"name" : "o2[3]",
+					"strict" : false
+				},
+				{
+					"name" : "o2[4]",
+					"strict" : false
+				},
+				{
+					"name" : "o2[5]",
+					"strict" : false
+				},
+				{
+					"name" : "o2[6]",
+					"strict" : false
+				},
+				{
+					"name" : "o2[7]",
+					"strict" : false
+				},
+				{
+					"name" : "o3[0]",
+					"strict" : false
+				},
+				{
+					"name" : "o3[1]",
+					"strict" : false
+				},
+				{
+					"name" : "o3[2]",
+					"strict" : false
+				},
+				{
+					"name" : "o3[3]",
+					"strict" : false
+				},
+				{
+					"name" : "o3[4]",
+					"strict" : false
+				},
+				{
+					"name" : "o3[5]",
+					"strict" : false
+				},
+				{
+					"name" : "o3[6]",
+					"strict" : false
+				},
+				{
+					"name" : "o3[7]",
+					"strict" : false
+				},
+				{
+					"name" : "o4[0]",
+					"strict" : false
+				},
+				{
+					"name" : "o4[1]",
+					"strict" : false
+				},
+				{
+					"name" : "o4[2]",
+					"strict" : false
+				},
+				{
+					"name" : "o4[3]",
+					"strict" : false
+				},
+				{
+					"name" : "o4[4]",
+					"strict" : false
+				},
+				{
+					"name" : "o4[5]",
+					"strict" : false
+				},
+				{
+					"name" : "o4[6]",
+					"strict" : false
+				},
+				{
+					"name" : "o4[7]",
+					"strict" : false
+				},
+				{
+					"name" : "o5[0]",
+					"strict" : false
+				},
+				{
+					"name" : "o5[1]",
+					"strict" : false
+				},
+				{
+					"name" : "o5[2]",
+					"strict" : false
+				},
+				{
+					"name" : "o5[3]",
+					"strict" : false
+				},
+				{
+					"name" : "o5[4]",
+					"strict" : false
+				},
+				{
+					"name" : "o5[5]",
+					"strict" : false
+				},
+				{
+					"name" : "o5[6]",
+					"strict" : false
+				},
+				{
+					"name" : "o5[7]",
+					"strict" : false
+				},
+				{
+					"name" : "o6[0]",
+					"strict" : false
+				},
+				{
+					"name" : "o6[1]",
+					"strict" : false
+				},
+				{
+					"name" : "o6[2]",
+					"strict" : false
+				},
+				{
+					"name" : "o6[3]",
+					"strict" : false
+				},
+				{
+					"name" : "o6[4]",
+					"strict" : false
+				},
+				{
+					"name" : "o6[5]",
+					"strict" : false
+				},
+				{
+					"name" : "o6[6]",
+					"strict" : false
+				},
+				{
+					"name" : "o6[7]",
+					"strict" : false
+				},
+				{
+					"name" : "o7[0]",
+					"strict" : false
+				},
+				{
+					"name" : "o7[1]",
+					"strict" : false
+				},
+				{
+					"name" : "o7[2]",
+					"strict" : false
+				},
+				{
+					"name" : "o7[3]",
+					"strict" : false
+				},
+				{
+					"name" : "o7[4]",
+					"strict" : false
+				},
+				{
+					"name" : "o7[5]",
+					"strict" : false
+				},
+				{
+					"name" : "o7[6]",
+					"strict" : false
+				},
+				{
+					"name" : "o7[7]",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "clr",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

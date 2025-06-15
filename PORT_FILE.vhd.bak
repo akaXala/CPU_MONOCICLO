@@ -1,0 +1,41 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity PORT_FILE is                       -- ▲ NUEVO
+  port (
+    clk      : in  std_logic;
+    clr      : in  std_logic;
+    en_w     : in  std_logic;             -- habilitación global
+    sel_w_p  : in  std_logic_vector(1 downto 0); -- puerto destino
+    dato     : in  std_logic_vector(7 downto 0); -- dato a escribir
+    O        : out std_logic_vector(31 downto 0) -- {P3,P2,P1,P0}
+  );
+end PORT_FILE;
+
+architecture rtl of PORT_FILE is
+  ----------------------------------------------------------------
+  -- 2→4 decoder (véase ejemplos clásicos)                       --
+  ----------------------------------------------------------------
+  signal dec_w : std_logic_vector(3 downto 0);
+begin
+  with sel_w_p select 
+    dec_w <= "0001" when "00",
+             "0010" when "01",
+             "0100" when "10",
+             "1000" when "11",
+             "0000" when others;
+
+  ----------------------------------------------------------------
+  -- Instancias de los cuatro puertos                            --
+  ----------------------------------------------------------------
+  GEN_PORTS : for i in 0 to 3 generate
+    PORTx : entity work.PORTB                -- reutilizamos tu PORTB
+      port map (
+        clk    => clk,
+        clr    => clr,
+        enable => en_w and dec_w(i),         -- escritura selectiva
+        I      => dato,
+        O      => O(8*i+7 downto 8*i)        -- salida empaquetada
+      );
+  end generate;
+end rtl;

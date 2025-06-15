@@ -1,0 +1,29 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity SREG is
+	port(
+		clk	: in	std_logic;
+		clr	: in	std_logic;
+		en		: in	std_logic;
+		ent	: in	std_logic;
+		sal	: out	std_logic
+	);
+end SREG;
+
+architecture reg of SREG is
+	signal q_aux	: std_logic;
+begin
+
+	process(clk, clr) is
+	begin
+		if clr = '1' then	
+			q_aux <= '0';
+		elsif clk'event and clk='1' and en = '1' then
+			q_aux <= ent;
+		end if;
+	end process;
+
+	sal <= q_aux;
+
+end reg;
